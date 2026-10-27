@@ -22,6 +22,8 @@ public class Equipement {
 
     private String libelle;
 
+    private Integer quantite;
+
     // Relation N Equipement <-> N Vehicule (relation inverse avec mappedBy)
     @ManyToMany(mappedBy = "equipements")
     private List<Vehicule> vehicules;
