@@ -1,0 +1,23 @@
+$kind: http-request
+name: Modifier un contrat
+method: PUT
+url: '{{baseUrl}}/api/contrats/{{contratId}}'
+headers:
+  - key: Content-Type
+    value: application/json
+body:
+  type: json
+  content: |-
+    {
+      "dateSignature": "2026-11-02",
+      "montantTotal": 520.00,
+      "valide": true
+    }
+scripts:
+  - type: afterResponse
+    language: text/javascript
+    code: |-
+      pm.test("Statut 200", () => pm.response.to.have.status(200));
+      pm.test("Montant modifié", () => {
+          pm.expect(pm.response.json().montantTotal).to.equal(520.00);
+      });

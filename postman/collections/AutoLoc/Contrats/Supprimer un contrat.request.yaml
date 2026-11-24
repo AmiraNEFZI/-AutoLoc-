@@ -1,0 +1,9 @@
+$kind: http-request
+name: Supprimer un contrat
+method: DELETE
+url: '{{baseUrl}}/api/contrats/{{contratId}}'
+scripts:
+  - type: afterResponse
+    language: text/javascript
+    code: |-
+      pm.test("Statut 204", () => pm.response.to.have.status(204));

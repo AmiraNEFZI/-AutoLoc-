@@ -1,0 +1,20 @@
+$kind: http-request
+name: Modifier avec montant négatif
+method: PUT
+url: '{{baseUrl}}/api/contrats/{{contratId}}'
+headers:
+  - key: Content-Type
+    value: application/json
+body:
+  type: json
+  content: |-
+    {
+      "dateSignature": "2026-11-02",
+      "montantTotal": -100.00,
+      "valide": true
+    }
+scripts:
+  - type: afterResponse
+    language: text/javascript
+    code: |-
+      pm.test("Statut 400", () => pm.response.to.have.status(400));

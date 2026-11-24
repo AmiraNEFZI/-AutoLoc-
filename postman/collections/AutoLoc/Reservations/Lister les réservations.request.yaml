@@ -1,0 +1,9 @@
+$kind: http-request
+name: Lister les réservations
+method: GET
+url: '{{baseUrl}}/api/reservations'
+scripts:
+  - type: afterResponse
+    language: text/javascript
+    code: |-
+      pm.test("Statut 200", () => pm.response.to.have.status(200));

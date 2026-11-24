@@ -1,0 +1,9 @@
+$kind: http-request
+name: Consulter une réservation
+method: GET
+url: '{{baseUrl}}/api/reservations/9999'
+scripts:
+  - type: afterResponse
+    language: text/javascript
+    code: |-
+      pm.test("Statut 404", () => pm.response.to.have.status(404));

@@ -1,0 +1,32 @@
+$kind: http-request
+name: Créer un contrat avec ses paiements
+method: POST
+url: '{{baseUrl}}/api/contrats'
+headers:
+  - key: Content-Type
+    value: application/json
+body:
+  type: json
+  content: |-
+    {
+      "dateSignature": "2026-11-02",
+      "montantTotal": 480.00,
+      "valide": true,
+      "paiements": [
+        {
+          "montant": 150.00,
+          "datePaiement": "2026-11-02",
+          "modePaiement": "CARTE"
+        },
+        {
+          "montant": 330.00,
+          "datePaiement": "2026-11-06",
+          "modePaiement": "VIREMENT"
+        }
+      ]
+    }
+scripts:
+  - type: afterResponse
+    language: text/javascript
+    code: |-
+      pm.test("Statut 201", () => pm.response.to.have.status(201));

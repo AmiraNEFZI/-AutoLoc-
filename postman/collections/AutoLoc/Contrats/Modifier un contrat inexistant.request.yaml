@@ -1,0 +1,20 @@
+$kind: http-request
+name: Modifier un contrat inexistant
+method: PUT
+url: '{{baseUrl}}/api/contrats/9999'
+headers:
+  - key: Content-Type
+    value: application/json
+body:
+  type: json
+  content: |-
+    {
+      "dateSignature": "2026-11-02",
+      "montantTotal": 520.00,
+      "valide": true
+    }
+scripts:
+  - type: afterResponse
+    language: text/javascript
+    code: |-
+      pm.test("Statut 404", () => pm.response.to.have.status(404));

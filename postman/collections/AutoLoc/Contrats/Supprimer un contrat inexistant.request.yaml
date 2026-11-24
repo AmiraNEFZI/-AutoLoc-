@@ -1,0 +1,9 @@
+$kind: http-request
+name: Supprimer un contrat inexistant
+method: DELETE
+url: '{{baseUrl}}/api/contrats/9999'
+scripts:
+  - type: afterResponse
+    language: text/javascript
+    code: |-
+      pm.test("Statut 404", () => pm.response.to.have.status(404));

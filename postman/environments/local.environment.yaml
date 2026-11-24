@@ -1,6 +1,8 @@
 name: local
 values:
   - key: baseUrl
-    value: 'http://localhost:8080'
-    enabled: true
-    type: default
+    value: 'http://localhost:8090'
+  - key: contratId
+    value: '1'
+  - key: reservationId
+    value: ''
